@@ -79,10 +79,24 @@ Copy `.env.example` to `.env`. Key vars: `JWT_KEY`, `VITE_API_URL`, `CORS_ALLOWE
 
 With more time:
 
-- Refresh tokens, httpOnly cookies, secret management, rate limiting, email verification.
-- Sort by due date (null-due last), overdue highlighting, full-text search at scale.
-- Workflows that publish messages instead of direct database calls (Azure Service Bus).
-- Optimistic UI updates; frontend E2E tests; CI/CD.
-- Postgres, structured logging, health checks, observability.
-- Horizonal Scale behind a load balancer/gateway
-- Searching via Elastic for a more fluid FTS experience
+**Product**
+- Sort by due date (null-due last), overdue highlighting
+- Soft deletes
+- SSO
+- More validation around registration/passwords
+
+**Quality & ops**
+- Frontend E2E tests (Playwright); CI/CD
+- Logging/telemetry
+- Graceful error handling when the API is unavailable
+
+**Platform**
+- Azure App Service, Container Registry, cloud deployment
+
+**Scalability**
+- Database sharding
+- Horizontal scale behind a load balancer/gateway
+- Move from SQLite to SQL Server or Postgres
+- Pub/sub (Azure Service Bus)
+- Elasticsearch for richer full-text search
+- Refresh tokens, httpOnly cookies, secret management, rate limiting, email verification
