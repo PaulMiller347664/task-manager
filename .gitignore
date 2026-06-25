@@ -4,11 +4,10 @@
 *.user
 .vs/
 
-# SQLite database files
+# SQLite database files (*.db rules cover runtime files in data/ or elsewhere)
 *.db
 *.db-shm
 *.db-wal
-backend/TaskManager.Api/data/
 
 # Node / frontend
 node_modules/
