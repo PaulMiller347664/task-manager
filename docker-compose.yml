@@ -1,0 +1,31 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      Database__Provider: Sqlite
+      Database__Path: ${DB_PATH:-/app/data}
+      Database__Name: ${DB_NAME:-app.db}
+      Database__User: ${DB_USER:-}
+      Database__Password: ${DB_PASSWORD:-}
+      Cors__AllowedOrigins__0: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
+      Jwt__Key: ${JWT_KEY:-CHANGE_ME_super_secret_dev_signing_key_at_least_32_chars_long}
+    volumes:
+      - sqlite-data:/app/data
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:5000/api}
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  sqlite-data:
