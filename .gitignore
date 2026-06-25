@@ -1,6 +1,8 @@
 # .NET
 **/bin/
 **/obj/
+**/publish-test/
+**/publish/
 *.user
 .vs/
 
