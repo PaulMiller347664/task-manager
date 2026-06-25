@@ -80,11 +80,12 @@ Copy `.env.example` to `.env`. Key vars: `JWT_KEY`, `VITE_API_URL`, `CORS_ALLOWE
 With more time:
 
 **Product**
+- Discuss with product to see what features we should implement
 - Sort by due date (null-due last), overdue highlighting
 - Soft deletes
 - SSO
 - More validation around registration/passwords
-
+- Dark Mode
 **Quality & ops**
 - Frontend E2E tests (Playwright); CI/CD
 - Logging/telemetry
@@ -97,6 +98,7 @@ With more time:
 - Database sharding
 - Horizontal scale behind a load balancer/gateway
 - Move from SQLite to SQL Server or Postgres
-- Pub/sub (Azure Service Bus)
+- Pub/sub (Azure Service Bus or Websockets)
 - Elasticsearch for richer full-text search
 - Refresh tokens, httpOnly cookies, secret management, rate limiting, email verification
+- Redis on more stale data (complete tasks are less likely to be edited)
