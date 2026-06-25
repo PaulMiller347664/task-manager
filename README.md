@@ -16,21 +16,15 @@ tasks scoped to the signed-in user.
 
 ## Setup
 
-**Prerequisites:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) running.
-Optional: GNU Make (`winget install ezwinports.make` on Windows; usually pre-installed on macOS/Linux).
+**Prerequisites:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) running, plus GNU Make (`winget install ezwinports.make` on Windows; usually pre-installed on macOS/Linux).
 
 ```bash
 git clone <repo-url>
 cd task-manager
-cp .env.example .env   # optional — defaults work for Docker
-
-make up                # full stack
-# or: make be (terminal 1) + make fe (terminal 2)
+make up
 ```
 
-Open **http://localhost:3000**. API: **http://localhost:8080/api** (avoids macOS AirPlay on port 5000).
-
-Without Make: `docker compose up --build`
+Open **http://localhost:3000**. API: **http://localhost:8080/api**.
 
 | Command     | Description                    |
 |-------------|--------------------------------|
@@ -40,24 +34,9 @@ Without Make: `docker compose up --build`
 | `make down` | Stop containers                |
 | `make test` | Backend integration tests      |
 
-Data persists in the `sqlite-data` Docker volume. Migrations run on backend startup.
+Run backend and frontend in separate terminals with `make be` and `make fe` if you prefer.
 
-### Local dev (no Docker)
-
-```bash
-# Backend
-cd backend && dotnet run --project TaskManager.Api
-
-# Frontend
-cd frontend && npm install && cp .env.example .env && npm run dev
-
-# Tests
-cd backend && dotnet test
-```
-
-### Configuration
-
-Copy `.env.example` to `.env`. Key vars: `JWT_KEY`, `VITE_API_URL`, `CORS_ALLOWED_ORIGINS`, `DB_PATH`, `DB_NAME`.
+Data persists in the `sqlite-data` Docker volume. Migrations run on backend startup. Optional: copy `.env.example` to `.env` to override `JWT_KEY`, `VITE_API_URL`, etc.
 
 ---
 
