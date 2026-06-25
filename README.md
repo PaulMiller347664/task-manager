@@ -28,14 +28,14 @@ make up                # full stack
 # or: make be (terminal 1) + make fe (terminal 2)
 ```
 
-Open **http://localhost:3000**. API: **http://localhost:5000/api** (Docker) or **http://localhost:5232/api** (local `dotnet run`).
+Open **http://localhost:3000**. API: **http://localhost:8080/api** (avoids macOS AirPlay on port 5000).
 
 Without Make: `docker compose up --build`
 
 | Command     | Description                    |
 |-------------|--------------------------------|
 | `make up`   | Full stack                     |
-| `make be`   | Backend only (port 5000)       |
+| `make be`   | Backend only (port 8080)       |
 | `make fe`   | Frontend only (port 3000)      |
 | `make down` | Stop containers                |
 | `make test` | Backend integration tests      |

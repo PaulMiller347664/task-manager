@@ -36,7 +36,7 @@ pull: check-docker
 fe: check-docker pull
 	docker compose up --build --no-deps frontend
 
-# Build and run ONLY the backend container (http://localhost:5000).
+# Build and run ONLY the backend container (http://localhost:8080).
 be: check-docker pull
 	docker compose up --build backend
 

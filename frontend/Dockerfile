@@ -8,7 +8,7 @@ RUN npm install
 COPY . .
 
 # API base URL is baked into the static build at build time.
-ARG VITE_API_URL=http://localhost:5000/api
+ARG VITE_API_URL=http://localhost:8080/api
 ENV VITE_API_URL=$VITE_API_URL
 RUN npm run build
 

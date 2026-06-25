@@ -2,9 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-COPY TaskManager.sln ./
 COPY TaskManager.Api/TaskManager.Api.csproj TaskManager.Api/
-COPY TaskManager.Tests/TaskManager.Tests.csproj TaskManager.Tests/
 RUN dotnet restore TaskManager.Api/TaskManager.Api.csproj
 
 COPY . .

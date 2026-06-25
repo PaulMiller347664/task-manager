@@ -1,3 +1,4 @@
+TaskManager.Tests/
 **/bin/
 **/obj/
 **/*.user
