@@ -22,7 +22,7 @@ public class CreateTaskRequest : IValidatableObject
                 new[] { nameof(Title) });
         }
 
-        if (DueDate.HasValue && DueDate.Value.ToUniversalTime() < DateTimeOffset.UtcNow)
+        if (DueDate.HasValue && DueDate.Value.UtcDateTime.Date < DateTime.UtcNow.Date)
         {
             yield return new ValidationResult(
                 "Due date cannot be in the past.",

@@ -2,10 +2,9 @@ import { useState, type FormEvent } from 'react';
 import { Box, Button, Stack, TextField } from '@mui/material';
 import type { CreateTaskInput } from '../../types/task';
 import {
-  localDateAndTimeToUtcIso,
+  localDateToUtcIso,
   utcIsoToLocalDateInput,
-  utcIsoToLocalTimeInput,
-  validateDueDateParts,
+  validateDueDateInput,
 } from '../../utils/dates';
 import ErrorAlert from '../common/ErrorAlert';
 
@@ -39,9 +38,6 @@ export default function TaskForm({
   const [dueDate, setDueDate] = useState(
     utcIsoToLocalDateInput(initialValues?.dueDate),
   );
-  const [dueTime, setDueTime] = useState(
-    utcIsoToLocalTimeInput(initialValues?.dueDate),
-  );
   const [localError, setLocalError] = useState<string | null>(null);
   const [localFieldErrors, setLocalFieldErrors] = useState<
     Record<string, string>
@@ -59,7 +55,7 @@ export default function TaskForm({
       return;
     }
 
-    const dueDateError = validateDueDateParts(dueDate, dueTime);
+    const dueDateError = validateDueDateInput(dueDate);
     if (dueDateError) {
       setLocalFieldErrors({ dueDate: dueDateError });
       return;
@@ -68,7 +64,7 @@ export default function TaskForm({
     onSubmit({
       title: title.trim(),
       description: description.trim() ? description.trim() : null,
-      dueDate: localDateAndTimeToUtcIso(dueDate, dueTime),
+      dueDate: localDateToUtcIso(dueDate),
     });
   };
 
@@ -97,34 +93,16 @@ export default function TaskForm({
           error={Boolean(mergedFieldErrors.description)}
           helperText={mergedFieldErrors.description}
         />
-        <Stack spacing={2}>
-          <TextField
-            label="Due date"
-            type="date"
-            fullWidth
-            value={dueDate}
-            onChange={(e) => setDueDate(e.target.value)}
-            error={Boolean(mergedFieldErrors.dueDate)}
-            helperText={
-              mergedFieldErrors.dueDate ??
-              'Optional. Required if you set a time.'
-            }
-            slotProps={{ inputLabel: { shrink: true } }}
-          />
-          <TextField
-            label="Due time"
-            type="time"
-            fullWidth
-            value={dueTime}
-            onChange={(e) => setDueTime(e.target.value)}
-            error={Boolean(mergedFieldErrors.dueTime)}
-            helperText={
-              mergedFieldErrors.dueTime ??
-              'Optional. Defaults to 11:59 PM if date only.'
-            }
-            slotProps={{ inputLabel: { shrink: true } }}
-          />
-        </Stack>
+        <TextField
+          label="Due date"
+          type="date"
+          fullWidth
+          value={dueDate}
+          onChange={(e) => setDueDate(e.target.value)}
+          error={Boolean(mergedFieldErrors.dueDate)}
+          helperText={mergedFieldErrors.dueDate ?? 'Optional'}
+          slotProps={{ inputLabel: { shrink: true } }}
+        />
 
         <Stack direction="row" spacing={2} sx={{ justifyContent: 'flex-end' }}>
           <Button onClick={onCancel} disabled={isPending}>

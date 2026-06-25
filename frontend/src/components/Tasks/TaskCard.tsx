@@ -12,7 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import type { Task } from '../../types/task';
 import { TaskStatus } from '../../types/task';
-import { formatLocalDateTime, isPastDate } from '../../utils/dates';
+import { formatLocalDate, isPastDate } from '../../utils/dates';
 
 interface Props {
   task: Task;
@@ -72,7 +72,7 @@ export default function TaskCard({
                   size="small"
                   variant="outlined"
                   color={overdue ? 'error' : 'default'}
-                  label={`Due ${formatLocalDateTime(task.dueDate)}`}
+                  label={`Due ${formatLocalDate(task.dueDate)}`}
                 />
               )}
             </Stack>
