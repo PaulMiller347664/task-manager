@@ -86,6 +86,7 @@ With more time:
 - SSO
 - More validation around registration/passwords
 - Dark Mode
+
 **Quality & ops**
 - Frontend E2E tests (Playwright); CI/CD
 - Logging/telemetry
